@@ -1,8 +1,8 @@
 {
-    "name": "my-bot",
+    "name": "hoyo-translator",
     "version": "1.0.0",
-    "author": "Kevin Novak",
-    "description": "A discord.js bot template written with TypeScript",
+    "author": "Isaac Sung",
+    "description": "A Discord bot that helps translate Hoyoverse games' character names.",
     "license": "MIT",
     "private": true,
     "engines": {

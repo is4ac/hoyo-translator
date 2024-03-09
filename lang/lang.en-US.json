@@ -17,9 +17,7 @@
             },
             "helpContactSupport": {
                 "title": "Help - {{REF:helpOptions.contactSupport}}",
-                "description": [
-                    "Have a question or feedback? Join our support server at the link below!"
-                ],
+                "description": ["Have a question or feedback? Ok, good for you!"],
                 "fields": [
                     {
                         "name": "{{REF:fields.links}}",
@@ -198,7 +196,8 @@
             "viewDateJoined": "View Date Joined"
         },
         "messageCommands": {
-            "viewDateSent": "View Date Sent"
+            "viewDateSent": "View Date Sent",
+            "translateHoyoNames": "Translate Hoyo Names"
         },
         "arguments": {
             "command": "command",

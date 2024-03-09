@@ -81,6 +81,13 @@ export const MessageCommandMetadata: {
         default_member_permissions: undefined,
         dm_permission: true,
     },
+    TRANSLATE_HOYO_NAMES: {
+        type: ApplicationCommandType.Message,
+        name: Lang.getRef('messageCommands.translateHoyoNames', Language.Default),
+        name_localizations: Lang.getRefLocalizationMap('messageCommands.translateHoyoNames'),
+        default_member_permissions: undefined,
+        dm_permission: true,
+    },
 };
 
 export const UserCommandMetadata: {

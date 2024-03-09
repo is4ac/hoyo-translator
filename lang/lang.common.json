@@ -1,7 +1,7 @@
 {
     "bot": {
-        "name": "My Bot",
-        "author": "My Name"
+        "name": "Hoyo Translator",
+        "author": "Isaac Sung"
     },
     "emojis": {
         "yes": "✅",
@@ -23,13 +23,11 @@
         "error": "#ff4a4a"
     },
     "links": {
-        "author": "https://github.com/",
+        "author": "https://github.com/is4ac",
         "docs": "https://top.gg/",
-        "donate": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=EW389DYYSS4FC",
+        "donate": "https://www.paypal.com/cgi-bin/webscr?cmd=donations&business=",
         "invite": "https://discord.com/",
-        "source": "https://github.com/",
-        "stream": "https://www.twitch.tv/novakevin",
-        "support": "https://support.discord.com/",
+        "source": "https://github.com/is4ac",
         "template": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template",
         "terms": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template/blob/master/LEGAL.md#terms-of-service",
         "vote": "https://top.gg/"
