@@ -13,6 +13,8 @@ import {
   User,
 } from 'discord.js';
 
+import { EmbedUtils } from './index.js';
+
 const IGNORED_ERRORS = [
   DiscordApiErrors.UnknownMessage,
   DiscordApiErrors.UnknownChannel,
@@ -25,6 +27,15 @@ const IGNORED_ERRORS = [
 ];
 
 export class MessageUtils {
+  public static content(msg: Message): string {
+    return [
+      msg.content,
+      ...msg.embeds.filter(embed => !embed.provider).map(embed => EmbedUtils.content(embed)),
+    ]
+      .filter(Boolean)
+      .join('\n');
+  }
+
   public static async send(
     target: User | TextBasedChannel,
     content: string | EmbedBuilder | BaseMessageOptions
