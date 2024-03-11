@@ -10,41 +10,49 @@ export function translateNames(message: string): string {
 }
 
 export function parseNames(message: string): string[] {
-  let namesToTranslate: string[] = [];
+  let namesToTranslate = new Set<string>();
 
   // Check English names
   let split = splitMessage(message);
   let multiWordTokens = getMultiWordTokens();
   split = combineMultiWords(split, multiWordTokens);
 
-  // @TODO: Need a way to check for certain character names that have
-  // spaces like "Yae Miko" or "Kuki Shinobu"
-
   split.forEach(word => {
     if (word in EnToJp) {
-      namesToTranslate.push(word);
+      namesToTranslate.add(word);
     }
   });
 
   // Check Japanese names
   Object.keys(JpToEn).forEach(name => {
     if (message.includes(name)) {
-      namesToTranslate.push(name);
+      namesToTranslate.add(name);
     }
   });
 
-  return namesToTranslate;
+  return [...namesToTranslate];
 }
 
 export function translateList(names: string[]): string {
-  return names
-    .map(
-      name =>
-        `${EnCapitalized[name] ? EnCapitalized[name] : name} <=> ${
-          EnToJp[name] ? EnToJp[name] : JpToEn[name]
-        }`
-    )
-    .join('\n');
+  // Uses a map and set in order to dedupe the list
+  const translatedMap = new Map<string, string>();
+  const uniqueTranslatedNames = new Set<string>();
+
+  names.forEach(name => {
+    let translated = EnToJp[name] ? EnToJp[name] : JpToEn[name];
+
+    if (!uniqueTranslatedNames.has(translated)) {
+      uniqueTranslatedNames.add(translated);
+      translatedMap.set(name, translated);
+    }
+  });
+
+  const resultList = [];
+  for (let [name, translated] of translatedMap.entries()) {
+    resultList.push(`${EnCapitalized[name] ? EnCapitalized[name] : name} <=> ${translated}`);
+  }
+
+  return resultList.join('\n');
 }
 
 function getMultiWordTokens(): string[] {
@@ -60,12 +68,23 @@ function getMultiWordTokens(): string[] {
 }
 
 function combineMultiWords(wordList: string[], multiWordTokens: string[]): string[] {
-  let newList: string[] = [];
+  let newList = [...wordList];
 
   multiWordTokens.forEach(token => {
     let tokenSplit = token.split(' ');
 
-    newList.findIndex(word => word === tokenSplit[0]);
+    let startIndex = wordList.findIndex(word => word === tokenSplit[0]);
+
+    // Check if all consecutive tokens match up in word list
+    if (startIndex > -1) {
+      for (let tokenIndex = 1; tokenIndex < tokenSplit.length; tokenIndex++) {
+        if (tokenSplit[tokenIndex] !== wordList[startIndex + tokenIndex]) {
+          return;
+        }
+      }
+
+      newList.push(token);
+    }
   });
 
   return newList;
