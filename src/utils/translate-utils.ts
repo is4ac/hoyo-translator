@@ -109,5 +109,5 @@ function splitMessage(message: string): string[] {
 function stripSpecialChars(word: string): string {
   return word
     .replace(/(^| +)[!-/:-@[-`{-~]*([^ ]*?)[!-/:-@[-`{-~]*(?=\s|$)/gi, '$1$2')
-    .replace(/'s$/g, '');
+    .replace(/['’‘]s$/g, '');
 }
