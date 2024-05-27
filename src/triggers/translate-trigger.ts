@@ -28,7 +28,14 @@ export class TranslateTrigger implements Trigger {
 
     if (characterNameResults.length > 0) {
       let translationMessage = translateList(characterNameResults);
-      await MessageUtils.send(msg.channel, translationMessage);
+      const message = await MessageUtils.send(msg.channel, translationMessage);
+      await MessageUtils.react(message, '🙏');
+      await MessageUtils.react(message, 'T');
+      await MessageUtils.react(message, 'H');
+      await MessageUtils.react(message, 'A');
+      await MessageUtils.react(message, 'N');
+      await MessageUtils.react(message, 'K');
+      await MessageUtils.react(message, 'S');
     }
   }
 }
